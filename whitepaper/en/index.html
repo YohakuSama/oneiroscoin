@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1d19">
+<title>OneirosCoin (ONRC) · Project Whitepaper · English Edition</title>
+<meta name="description" content="OneirosCoin ONRC official whitepaper: Solana token parameters, bonding curve, migration, governance, risks, and verifiable source references.">
+<link rel="canonical" href="https://yohakusama.github.io/oneiroscoin/whitepaper/en/">
+<style>
+:root { --black:#0b1d19; --forest:#16352d; --muted:#62736b; --border:#ccd8cf; --gold:#ad925b; --paper:#f6f5f0; --light:#fdfcf8; }
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;color:#21362f;background:var(--paper);font:15.5px/1.8 "Inter","Segoe UI",Arial,"Noto Sans CJK SC",sans-serif}
+a{color:#225847;text-decoration-thickness:1px;text-underline-offset:3px} a:hover{color:#1b4237}
+nav{display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--black);color:#f4e8d2;padding:16px max(25px,calc((100vw - 990px)/2));position:relative}
+nav .brand{font:700 19px Georgia,serif;letter-spacing:.015em;text-decoration:none;color:#f4e8d2}nav .brand small{font:600 10px Arial,sans-serif;display:block;color:#d9be8b;letter-spacing:.18em}
+nav .actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap} nav .actions a,nav button{color:#e2e5dc;background:transparent;border:0;font:600 12px Arial,sans-serif;text-decoration:none;letter-spacing:.07em;cursor:pointer} nav .actions a:hover,nav button:hover{color:#e2bc80} nav .actions .selected{color:#e2bc80}
+.sheet{max-width:970px;margin:40px auto;background:#fff;box-shadow:0 16px 55px #0c201a18;border:1px solid #d9dfd7}
+.cover{background:radial-gradient(circle at 88% 7%,#2b5340 0,#10291f 47%,#0b1b16 100%);color:#f4f0e4;min-height:525px;padding:65px 65px 52px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.cover:after{content:"";width:480px;height:480px;border-radius:50%;border:1px solid #d8c39326;position:absolute;right:-145px;top:-70px;box-shadow:0 0 0 35px #d8c3930b,0 0 0 75px #d8c3930a}
+.cover-top{display:flex;justify-content:space-between;align-items:center;gap:20px;position:relative;z-index:1;border-bottom:1px solid #dac39b54;padding-bottom:24px}
+.cover-top .motto{font:700 11px Arial,sans-serif;letter-spacing:.27em;color:#debd80}
+.cover-top .version{font:600 11px Arial,sans-serif;color:#c9d1c7;letter-spacing:.1em}
+.cover-title{margin-top:78px;position:relative;z-index:1}
+.cover h1{font:normal 68px/.97 Georgia,"Noto Serif CJK SC",serif;letter-spacing:-.042em;margin:0 0 17px}
+.cover .subtitle{font:normal 25px/1.4 Georgia,"Noto Serif CJK SC",serif;color:#ddc899;margin:0}
+.cover .desc{font-size:15px;line-height:1.7;max-width:585px;color:#cedbd0;margin-top:29px}
+.cover-foot{margin-top:auto;display:flex;flex-wrap:wrap;gap:20px;align-items:center;position:relative;z-index:1;border-top:1px solid #dac39b35;padding-top:26px;font-size:12px;color:#d2d8cf}
+.cover-foot span{display:inline-block;border-left:2px solid #d2b77d;padding-left:11px}
+.front-note{font-size:13.1px;color:#50655b;background:#f5f2e9;border-bottom:1px solid var(--border);padding:24px 65px 25px;line-height:1.65}
+.toc{padding:40px 65px 24px;display:grid;grid-template-columns:1fr 1fr;gap:8px 30px}
+.toc .toc-title{grid-column:1/-1;color:#b08b52;text-transform:uppercase;font:700 12px Arial,sans-serif;letter-spacing:.19em;margin:0 0 9px}
+.toc a{display:flex;gap:11px;color:#435b50;text-decoration:none;font-size:12.5px;line-height:1.4;padding:5px 0;border-bottom:1px solid #e4ebe5}
+.toc a span{color:#bd985b;font-weight:800}
+.article{padding:13px 65px 65px}
+.article h2{margin:48px 0 18px;font:normal 30px/1.22 Georgia,"Noto Serif CJK SC",serif;letter-spacing:-.025em;color:#16352b;border-top:1px solid #d7dfd7;padding-top:24px;break-after:avoid;page-break-after:avoid}
+.article h3{font:600 17px/1.4 "Inter","Segoe UI",Arial,"Noto Sans CJK SC",sans-serif;color:#1c473a;margin:24px 0 10px;break-after:avoid;page-break-after:avoid}
+.article p{margin:11px 0;line-height:1.8}.article strong{color:#1a4134}
+.article ul,.article ol{padding-left:24px;margin:10px 0}.article li{margin:4px 0;line-height:1.65}.article ul li::marker{color:#b18c55}
+.article table{border-collapse:collapse;width:100%;font-size:12.3px;line-height:1.55;margin:20px 0 23px;table-layout:fixed}
+.article th{background:#123b2b;color:#f8f4e8;font-weight:600;text-align:left;vertical-align:middle}
+.article td{background:#fbfdf9;vertical-align:top}
+.article tr:nth-child(even) td{background:#eef4ef}
+.article td,.article th{padding:11px 13px;border:1px solid #d0dcd2;overflow-wrap:anywhere;word-break:normal}
+.article th:first-child,.article td:first-child{width:37%}
+code{font:11.3px/1.7 "SFMono-Regular",Consolas,"Noto Sans Mono CJK SC",monospace;overflow-wrap:anywhere;word-break:break-all;background:#eef3ec;padding:1px 3px}
+.article a{overflow-wrap:anywhere;word-break:break-word}
+footer{padding:29px 65px 42px;border-top:1px solid #d9e1dc;background:#f7f7f1;display:flex;justify-content:space-between;gap:20px;font-size:11px;color:#5e7268}
+footer span:first-child{font-weight:700;color:#315242}footer a{text-decoration:none}
+@media(max-width:800px){.sheet{margin:0;border:0;box-shadow:none}.cover{padding:47px 27px 40px;min-height:495px}.cover h1{font-size:52px}.cover .subtitle{font-size:21px}.front-note{padding:23px 27px}.toc{padding:29px 27px 15px}.article{padding:10px 27px 45px}.article h2{font-size:26px}.article table{font-size:11.5px}.article td,.article th{padding:8px}.article th:first-child,.article td:first-child{width:36%}footer{padding:25px 27px;flex-direction:column}nav{padding:14px 22px}nav .actions{gap:11px}}
+@media(max-width:520px){.toc{grid-template-columns:1fr}.cover h1{font-size:46px}.cover-title{margin-top:65px}nav .actions a,nav button{font-size:11px}.article h2{font-size:25px}.article table{font-size:11px}}
+@page{size:A4;margin:14mm 14mm 16mm}
+@media print{
+html,body{background:#fff!important;font-size:9.9pt;line-height:1.48;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+nav,.toolbar{display:none!important}.sheet{margin:0;border:0;max-width:100%;box-shadow:none}
+.cover{min-height:259mm;max-height:259mm;padding:25mm 14mm 20mm;break-after:page;page-break-after:always}
+.cover h1{font-size:57pt}.cover .subtitle{font-size:23pt}.cover-title{margin-top:53mm}.cover .desc{font-size:12pt}.cover-foot{font-size:9pt}
+.front-note{border:1px solid #d6dfd3;margin:2mm 0 4mm;padding:4mm 6mm;font-size:9pt}
+.toc{padding:4mm 0 7mm;gap:3mm 7mm}.toc .toc-title{font-size:9pt}.toc a{font-size:8pt;line-height:1.2}
+.article{padding:0}.article h2{font-size:17.6pt;margin:6.7mm 0 3mm;padding-top:3mm}.article h3{font-size:12pt;margin:4mm 0 2mm}
+.article p{margin:2.6mm 0;line-height:1.52}
+.article table{font-size:8.3pt;margin:3mm 0;line-height:1.37}
+.article td,.article th{padding:2.1mm 2mm}
+.article tr{break-inside:avoid;page-break-inside:avoid}
+.article p,.article ul,.article ol{orphans:3;widows:3}
+code{font-size:7pt;word-break:break-all}
+footer{padding:4mm 0;border-top:1px solid #d6dfd3;font-size:8pt;background:#fff}
+}
+</style>
+</head>
+<body>
+<nav aria-label="Whitepaper navigation">
+  <a class="brand" href="../../">OneirosCoin<small>HONK YOUR DREAMS · ONRC</small></a>
+  <div class="actions">
+    <a href="../../">Back to website</a>
+    <a class="selected" hreflang="en" lang="en" href="../en/">ENGLISH</a>
+    <a class="" hreflang="zh-CN" lang="zh-CN" href="../zh/">中文</a>
+    <button type="button" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</nav>
+<div class="sheet">
+<section class="cover">
+  <div class="cover-top"><span class="motto">ONEIROSCOIN · ONRC</span><span class="version">VERSION 1.0 · NOV 2026</span></div>
+  <div class="cover-title"><h1>OneirosCoin</h1><p class="subtitle">Project Whitepaper / English Edition</p><p class="desc">A Solana meme token inspired by the dream spirits of Greek mythology.<br>Verified chain facts and explicit limits</p></div>
+  <div class="cover-foot"><span>Published 16 November 2026</span><span>SOLANA MAINNET</span><span>ONRC</span></div>
+</section>
+<div class="front-note"><p><strong>Scope and evidence.</strong> This document describes the OneirosCoin token, the on-chain configuration observed in the project's 15 November 2026 audit snapshot, and material limitations. It is a project disclosure, not a claim of technological innovation, an independent security audit, a prospectus, or investment advice. Facts may change after the verification time; verify live accounts before transacting.</p>
+</div>
+<section class="toc" aria-label="Contents"><div class="toc-title">Contents</div><a href="#section-1"><span>01</span>Executive summary</a><a href="#section-2"><span>02</span>Purpose and scope</a><a href="#section-3"><span>03</span>Verifiable token specification</a><a href="#section-4"><span>04</span>Launch mechanism and pool lifecycle</a><a href="#section-5"><span>05</span>Trading fees and creator economics</a><a href="#section-6"><span>06</span>Supply, distribution, and ownership disclosures</a><a href="#section-7"><span>07</span>Governance, operations, and planned activity</a><a href="#section-8"><span>08</span>Security and operational considerations</a><a href="#section-9"><span>09</span>Material risks</a><a href="#section-10"><span>10</span>Verification record and evidence limits</a><a href="#section-11"><span>11</span>Public addresses and communication</a><a href="#section-12"><span>12</span>References and editorial method</a></section>
+<article class="article"><h2 id="section-1">1. Executive summary</h2>
+<p>OneirosCoin (ticker <strong>ONRC</strong>) is a Solana meme token with a mythical goose identity inspired by the <em>Oneiroi</em>, dream spirits in Greek mythology. Its premise is cultural and community-oriented. ONRC does not introduce a new blockchain, consensus protocol, decentralized exchange, oracle, or payment network. It uses existing Solana token infrastructure and Meteora's Dynamic Bonding Curve (DBC).</p>
+<p>The verified token supply is <strong>1,000,000,000 ONRC</strong>, with <strong>six decimals</strong>. Its mint and freeze authorities have been revoked. The initial ONRC/USDC DBC pool is configured with a <strong>0.30% base trading fee</strong>, <strong>disabled DBC dynamic trading fees</strong>, and a <strong>750 USDC quote-reserve graduation threshold</strong>. If migration conditions are met and migration is executed, the configured destination is <strong>Meteora DAMM v2</strong>, with <strong>100% of the creator LP allocation designated as permanently locked</strong>. This is a configuration for the future migration, not proof that migrated liquidity has already been locked.</p>
+<p>As of the public-state snapshot recorded at <strong>2026-11-15 21:32 UTC</strong>, the DBC pool had <strong>0 USDC</strong> in quoted reserve, showed <strong>0%</strong> graduation progress, and <strong>had not migrated</strong>. This is a dated observation, not a live market quotation.</p>
+<h2 id="section-2">2. Purpose and scope</h2>
+<h3>2.1 Cultural identity</h3>
+<p>The name references the Greek mythological dream spirits. The goose, coin portrait, and tagline “Born from a dream. Destined for nothing. Honk your dreams.” are original project branding. The goose is not presented as a literal figure from the ancient sources.</p>
+<h3>2.2 What ONRC does today</h3>
+<p>ONRC is a transferable SPL token deployed on Solana. Its initial market was configured as a DBC pool quoted in USDC. Users can inspect the mint, pool, configuration, and transaction history using Solana explorers and public RPC interfaces. Trading availability, execution prices, and third-party integrations depend on current chain state and infrastructure.</p>
+<h3>2.3 What ONRC does not provide</h3>
+<p>There is <strong>no documented token-backed claim to equity, dividends, revenue, treasury assets, redemption at a fixed value, governance votes, staking yield, or guaranteed services</strong>. The project's public materials do not establish any of those rights. This whitepaper does not introduce such rights by implication.</p>
+<h2 id="section-3">3. Verifiable token specification</h2>
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Value / observation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Name / ticker</td>
+  <td>OneirosCoin / ONRC</td>
+</tr>
+<tr>
+  <td>Network</td>
+  <td>Solana mainnet-beta</td>
+</tr>
+<tr>
+  <td>Token standard</td>
+  <td>SPL Token (legacy Token Program)</td>
+</tr>
+<tr>
+  <td>Mint</td>
+  <td><code>D52WmiMiEvfj4qXbpZP7PvtcUx3QWnaJJfERJfNSkB55</code></td>
+</tr>
+<tr>
+  <td>Decimal places</td>
+  <td>6</td>
+</tr>
+<tr>
+  <td>Total observed supply</td>
+  <td>1,000,000,000 ONRC</td>
+</tr>
+<tr>
+  <td>Raw supply</td>
+  <td>1,000,000,000,000,000 base units</td>
+</tr>
+<tr>
+  <td>Mint authority</td>
+  <td>Revoked (null)</td>
+</tr>
+<tr>
+  <td>Freeze authority</td>
+  <td>Revoked (null)</td>
+</tr>
+<tr>
+  <td>Token metadata</td>
+  <td>OneirosCoin / ONRC; immutable on-chain metadata</td>
+</tr>
+<tr>
+  <td>Quote token</td>
+  <td>USDC on Solana: <code>EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v</code></td>
+</tr>
+<tr>
+  <td>DBC config account</td>
+  <td><code>DARJaFYLWWepZnmN4ezrTziU2ymRbZae1NhZYuetNc1E</code></td>
+</tr>
+<tr>
+  <td>DBC pool account</td>
+  <td><code>2zbY23A7UWMmdY14zgeneJw5jcdRwqYQu6K6XbsgDpgU</code></td>
+</tr>
+<tr>
+  <td>Published metadata URI</td>
+  <td><code>https://gateway.irys.xyz/3S2vDEHeS4HQFsU3ePvzmpvB4Z3yxuWJznT8fLyAfpzK</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Meaning of a fixed supply.</strong> Revoking mint authority prevents ordinary further issuance under this mint. It does <strong>not</strong> establish who controls existing tokens, ensure equitable distribution, guarantee exchange availability, or eliminate price risk. The audited metadata account was marked immutable; this limits edits to that metadata, not off-chain website or social-account changes.</p>
+<h2 id="section-4">4. Launch mechanism and pool lifecycle</h2>
+<h3>4.1 Dynamic Bonding Curve</h3>
+<p>The project uses Meteora DBC, an existing permissionless Solana launch program. Before migration, swaps take place against a virtual pool according to a configurable on-chain price curve. Prices and slippage depend on the current curve, reserves, and trade size. The token does not promise a stable price or a minimum exit price.</p>
+<h3>4.2 Quote asset and graduation</h3>
+<p>The quote asset is Solana USDC. The DBC configuration specifies <strong>750 USDC</strong> as the migration quote-reserve threshold. This number is a condition for a pool lifecycle transition. It is <strong>not</strong> a project treasury balance, a guaranteed fundraising target, an investor protection fund, or a minimum liquidity commitment by the team. Meteora documents a mainnet keeper route for eligible USDC DBC pools at this threshold; actual migration still depends on applicable program conditions and services [5].</p>
+<h3>4.3 After graduation</h3>
+<p>The intended destination is Meteora <strong>DAMM v2</strong>. The audited configuration specifies <strong>100% creator permanent-locked LP</strong>, <strong>0% creator withdrawable LP</strong>, <strong>0% partner withdrawable LP</strong>, and <strong>0% partner permanent-locked LP</strong>. These percentages apply to the migrated liquidity position allocation, <strong>not to the entire token supply</strong>. Liquidity locks cannot be verified as completed until the migration and destination positions exist on-chain.</p>
+<p>Permanent LP locking restricts withdrawal of locked principal. It does <strong>not</strong> necessarily prevent claims on trading fees accrued to a locked position; Meteora's DAMM v2 documentation distinguishes liquidity withdrawal from fee claims [6]. Therefore, permanent liquidity locking should never be described as a waiver of all creator economics.</p>
+<h2 id="section-5">5. Trading fees and creator economics</h2>
+<table>
+<thead>
+<tr>
+  <th>Setting</th>
+  <th>Observed configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Initial DBC base trading fee</td>
+  <td>30 basis points (0.30%)</td>
+</tr>
+<tr>
+  <td>Initial DBC dynamic fee</td>
+  <td>Disabled</td>
+</tr>
+<tr>
+  <td>Creator allocation of non-protocol DBC fee</td>
+  <td>100% of the creator/partner share</td>
+</tr>
+<tr>
+  <td>Configured DBC pool-creation fee</td>
+  <td>0</td>
+</tr>
+<tr>
+  <td>Graduation destination</td>
+  <td>DAMM v2</td>
+</tr>
+<tr>
+  <td>Selected DAMM v2 base fee option</td>
+  <td>0.30%</td>
+</tr>
+<tr>
+  <td>Permanent LP allocation after migration</td>
+  <td>100% creator-locked; 0% withdrawable</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>0.30% base fee</strong> means a configured fee of 0.003 units per 1 unit of traded notional before other transaction-specific costs. It is not a promise about total wallet costs, which can also include network fees, routing fees, price impact, and slippage. Meteora's DBC splits trading fees into protocol and non-protocol components; <strong>100% creator allocation does not mean 100% of the gross trading fee reaches the creator</strong> [4].</p>
+<p>The on-chain creator/fee-claimer/leftover-receiver address at the audit time was <code>9p9dNQSVoq3hD6iGG9k9WF2ozcMsfMQGY6ZSN2xq2GbY</code>. The public evidence does not establish a binding commitment to spend any claimed fees on liquidity, development, marketing, grants, buybacks, or burns. No such commitment is made here. Protocol-level fees and migration charges are governed by Meteora's applicable program rules [4].</p>
+<h2 id="section-6">6. Supply, distribution, and ownership disclosures</h2>
+<p><strong>Fixed supply is verified; distribution policy is not.</strong> The observed mint supply was one billion tokens. The available audit does not establish a complete initial allocation ledger, beneficial ownership of all addresses, team allocations, investor allocations, vesting agreements, or exchange holdings. The project therefore does not claim “zero team allocation,” “100% fair launch,” “no insiders,” or “fully decentralized ownership.”</p>
+<p>Token balances and transfers are public on Solana. A responsible future disclosure would include a dated allocation table with wallet addresses, controlled-entity relationships, and any transfers to team, community, or liquidity accounts. Until such a disclosure is independently checked, readers should treat distribution concentration as <strong>unknown</strong>.</p>
+<p>The presence of an official creator/fee-receiver wallet does not by itself indicate that its balances belong to a public treasury or a legally segregated foundation. No treasury governance scheme has been documented.</p>
+<h2 id="section-7">7. Governance, operations, and planned activity</h2>
+<h3>7.1 Current governance</h3>
+<p>There is no verified on-chain ONRC token-voting system, treasury DAO, or tokenholder-controlled protocol upgrade process. Website content and social communications are operated off-chain. The project has a published contact email, <code>waylanus@gmail.com</code>. The identity and jurisdiction of any formal legal operating entity have not been established by the supplied public records.</p>
+<h3>7.2 Ongoing disclosures, not guarantees</h3>
+<p>The project intends to maintain accessible English and Chinese documentation, public links to its Solana accounts, and dated corrections where errors are found. Potential future community or artistic initiatives require separate announcements and evidence before they may be treated as product commitments. <strong>There is no guaranteed development schedule, token listing, marketing budget, exchange partnership, or future utility specified in this document.</strong></p>
+<h3>7.3 Documents versus chain state</h3>
+<p>This whitepaper is explanatory and does not override on-chain program behavior. For claims about mint supply, permissions, pool configuration, and migration, readers should prioritize verified chain state over screenshots, cached explorer displays, or website prose.</p>
+<h2 id="section-8">8. Security and operational considerations</h2>
+<p>The project uses the Solana SPL Token Program and third-party Meteora DBC/DAMM v2 programs. Using known programs does not eliminate risks from software defects, permission structures, protocol upgrades, RPC outages, fee behavior, external services, or wallet compromise. An earlier read-only project audit checked selected public account fields and transaction finality; <strong>that review was not an independent code security audit or formal certification</strong>.</p>
+<p>The observed mint authority and freeze authority were null, and the metadata was immutable. These are useful constraints but cannot guarantee safe markets, accurate external interfaces, fair distribution, or protection against every form of malicious trading. Users must independently verify contract addresses, wallet prompts, approvals, and service domains.</p>
+<h2 id="section-9">9. Material risks</h2>
+<p><strong>Speculation and total loss.</strong> ONRC has no guaranteed redemption value or cash flow. Its market price may be extremely volatile and can fall to zero.</p>
+<p><strong>Liquidity and execution.</strong> A small or inactive DBC pool may offer inadequate exit liquidity. Large trades can face severe slippage, adverse price movement, MEV, sandwich attacks, transaction failure, or trading interruption.</p>
+<p><strong>Distribution and control.</strong> Actual ownership concentration and insider holdings have not been fully disclosed. Fee-claim rights exist, and permanent LP locks do not waive all fee income.</p>
+<p><strong>Migration.</strong> Graduation at 750 USDC and subsequent DAMM v2 migration are configured events, not guaranteed deadlines or completed states. A delay, failure, or change in third-party services can affect the outcome.</p>
+<p><strong>Technical and custodial.</strong> Solana, Meteora, wallets, token accounts, public RPC providers, Irys metadata hosting, websites, and domain accounts have independent availability and security risks. Loss of wallet keys can cause irreversible asset loss.</p>
+<p><strong>Regulatory and tax.</strong> Laws differ across jurisdictions and can change. Buyers and holders are responsible for assessing their own eligibility, legal obligations, and tax consequences.</p>
+<p><strong>Information quality.</strong> Explorer indexing, project pages, and screenshots can be inaccurate or stale. The exact audit snapshot cited here does not establish current price, holder count, trading depth, market capitalization, or future outcomes.</p>
+<h2 id="section-10">10. Verification record and evidence limits</h2>
+<table>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Status at the referenced audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>DBC config and pool accounts</td>
+  <td>Present; decoded successfully</td>
+</tr>
+<tr>
+  <td>ONRC mint</td>
+  <td>Present; 1,000,000,000 supply, 6 decimals</td>
+</tr>
+<tr>
+  <td>Mint / freeze authorities</td>
+  <td>Both revoked</td>
+</tr>
+<tr>
+  <td>Metadata</td>
+  <td>Present, immutable, expected name, symbol, URI</td>
+</tr>
+<tr>
+  <td>DBC fee</td>
+  <td>0.30% base; dynamic fee disabled</td>
+</tr>
+<tr>
+  <td>Graduation setting</td>
+  <td>750 USDC quote reserve</td>
+</tr>
+<tr>
+  <td>Migration setting</td>
+  <td>DAMM v2; 100% creator permanent-locked LP</td>
+</tr>
+<tr>
+  <td>DBC reserve / progress</td>
+  <td>0 USDC / 0% at 2026-11-15 21:32 UTC</td>
+</tr>
+<tr>
+  <td>DAMM v2 migration and final LP lock</td>
+  <td><strong>Not completed at that audit time</strong></td>
+</tr>
+<tr>
+  <td>Formal third-party security audit</td>
+  <td><strong>Not documented in the supplied evidence</strong></td>
+</tr>
+<tr>
+  <td>Token allocation by beneficial owner</td>
+  <td><strong>Not established by the supplied evidence</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The snapshot was collected from a read-only Solana mainnet inspection on 15 November 2026, 21:32 UTC. Its checks passed, with one informational warning: DBC SDK token-supply fields were unavailable, so mint supply was checked independently. Both create-config and create-pool transaction records were finalized without execution errors in that inspection. <strong>This does not establish the present pool reserve or migration state.</strong></p>
+<h2 id="section-11">11. Public addresses and communication</h2>
+<ul>
+<li><strong>Official mint:</strong> <code>D52WmiMiEvfj4qXbpZP7PvtcUx3QWnaJJfERJfNSkB55</code></li>
+<li><strong>DBC pool:</strong> <code>2zbY23A7UWMmdY14zgeneJw5jcdRwqYQu6K6XbsgDpgU</code></li>
+<li><strong>DBC config:</strong> <code>DARJaFYLWWepZnmN4ezrTziU2ymRbZae1NhZYuetNc1E</code></li>
+<li><strong>Creator / fee-claimer:</strong> <code>9p9dNQSVoq3hD6iGG9k9WF2ozcMsfMQGY6ZSN2xq2GbY</code></li>
+<li><strong>Metadata:</strong> https://gateway.irys.xyz/3S2vDEHeS4HQFsU3ePvzmpvB4Z3yxuWJznT8fLyAfpzK</li>
+<li><strong>Solscan token:</strong> https://solscan.io/token/D52WmiMiEvfj4qXbpZP7PvtcUx3QWnaJJfERJfNSkB55</li>
+<li><strong>Project website:</strong> https://yohakusama.github.io/oneiroscoin/</li>
+<li><strong>X:</strong> https://x.com/oneiroscoin</li>
+<li><strong>Telegram:</strong> https://t.me/OneirosCoin</li>
+<li><strong>Project email:</strong> waylanus@gmail.com</li>
+</ul>
+<h2 id="section-12">12. References and editorial method</h2>
+<p>The presentation of the problem, design, mechanisms, risks, and independent verification is informed by established whitepaper conventions. The following publications are <strong>structural and technical references</strong>, not partners, endorsements, or claims of equivalence to ONRC.</p>
+<ol>
+<li>Satoshi Nakamoto, <em>Bitcoin: A Peer-to-Peer Electronic Cash System</em> (2008). https://bitcoin.org/bitcoin.pdf</li>
+<li>Ethereum, <em>A Next-Generation Smart Contract and Decentralized Application Platform</em> (2014). https://ethereum.org/whitepaper/</li>
+<li>Solana, <em>A New Architecture for a High Performance Blockchain</em>. https://solana.com/solana-whitepaper.pdf</li>
+<li>Meteora, <em>DBC Formulas</em> and <em>Launch Configurations</em>. https://github.com/MeteoraAg/docs/blob/main/core-products/dbc/formulas.mdx and https://github.com/MeteoraAg/docs/blob/main/core-products/dbc/launch-configurations.mdx</li>
+<li>Meteora, <em>DBC Developer Guide and Migration Keeper Thresholds</em>. https://github.com/MeteoraAg/docs/blob/main/developer-guides/dbc/index.mdx</li>
+<li>Meteora, <em>DAMM v2 Overview and LP Locks</em>. https://github.com/MeteoraAg/docs/blob/main/core-products/damm-v2/what-is-damm-v2.mdx and https://github.com/MeteoraAg/docs/blob/main/user-guides/how-to-use-damm-v2/damm-v2-pool-detail.mdx</li>
+<li>Uniswap, <em>Uniswap v3 Core Whitepaper</em> (2021). https://app.uniswap.org/whitepaper-v3.pdf</li>
+<li>OneirosCoin, <em>read-only on-chain verification snapshot</em> (15 November 2026, 21:32 UTC). Primary public accounts and transaction signatures are provided in Sections 3 and 11; the audit is a project-run inspection and not an independent protocol audit.</li>
+</ol>
+<h2>Version and disclaimer</h2>
+<p><strong>Version 1.0 · 16 November 2026.</strong> This text records presently evidenced project facts and explicit uncertainties. Any future revision should include a date, a change summary, and fresh chain-state verification. A translated edition must preserve the same substantive statements. This document is informational, not an offer to sell securities or a statement that tokens are suitable for any reader. Nothing here guarantees price appreciation, liquidity, graduation, rewards, or safety.</p>
+</article>
+<footer><span>ONEIROSCOIN · ONRC · WHITEPAPER V1.0</span><span>Public on-chain audit snapshot: 2026-11-15 21:32 UTC<br>Information document · Not investment advice</span></footer>
+</div>
+</body>
+</html>
