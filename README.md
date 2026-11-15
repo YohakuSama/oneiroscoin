@@ -11,16 +11,14 @@ Official English-language website for OneirosCoin, a Solana meme token.
 
 ## Whitepaper / 白皮书
 
-Version 1.0, published 16 November 2026. Two equivalent language editions are published in the official website:
+**OneirosCoin Project Whitepaper 1.0 (16 November 2026).**
 
-- **English (read online / print to PDF):** https://yohakusama.github.io/oneiroscoin/whitepaper/en/
-- **简体中文（在线阅读 / 打印保存 PDF）：** https://yohakusama.github.io/oneiroscoin/whitepaper/zh/
-- **English Markdown source:** [docs/whitepaper-en.md](docs/whitepaper-en.md)
-- **中文 Markdown 原文：** [docs/whitepaper-zh.md](docs/whitepaper-zh.md)
+- [English whitepaper](https://yohakusama.github.io/oneiroscoin/whitepaper/en/) — vision, token design, DBC market, liquidity, founder-fee economics, community and roadmap.
+- [中文版白皮书](https://yohakusama.github.io/oneiroscoin/whitepaper/zh/) — 项目愿景、发行与分配、市场机制、创始人经济模型、社群与路线图。
+- [English source](docs/whitepaper-en.md)
+- [中文原稿](docs/whitepaper-zh.md)
 
-The whitepapers distinguish verified mainnet observations from future migration conditions and unknown distribution details. At the referenced 15 November 2026 audit snapshot, the DBC pool had **not yet graduated or migrated**. Its configuration specifies 750 USDC graduation and 100% creator permanent-locked LP allocation **after successful migration**, not a present-day guarantee that DAMM v2 liquidity is locked.
-
-Whitepapers are informational project disclosures, not third-party security audits or promises of investment returns.
+The whitepaper describes the founder's stated allocation policy: one founder, no reserved founder tokens, and project income from allocated creator trading fees. Network and token configuration are traceable to the listed Solana accounts. The whitepaper distinguishes the configured post-graduation LP lock from the actual migration event.
 
 ## Publish with GitHub Pages
 
